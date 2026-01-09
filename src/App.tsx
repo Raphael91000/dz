@@ -1,25 +1,67 @@
-import { Phone, MessageCircle, Instagram, MapPin, Mail, Shield, Clock, Users, CheckCircle, Crown } from 'lucide-react';
+import { useRef } from 'react';
+import { Phone, MessageCircle, Instagram, MapPin, Mail, Shield, Clock, Users, CheckCircle } from 'lucide-react';
 import Navbar from './components/Navbar';
 
 function App() {
-  const pricing = [
-    { duration: '1 heure', price: '40 €', popular: false },
-    { duration: '2 heures', price: '60 €', popular: true },
-    { duration: '3 heures', price: '90 €', popular: false },
+  const quadIncluded = [
+    { icon: Shield, text: 'Casque' },
+    { icon: Shield, text: 'Gants' },
+    { icon: CheckCircle, text: '1 boisson offerte' },
   ];
 
-  const included = [
-    { icon: Shield, text: 'Casque fourni' },
-    { icon: Shield, text: 'Gants fournis' },
-    { icon: CheckCircle, text: 'Boisson offerte' },
+  const carIncluded = [
+    { icon: CheckCircle, text: '1 boisson offerte' },
   ];
 
   const conditions = [
-    'Permis de conduire obligatoire',
-    'Pièce d\'identité ou passeport',
-    'Caution demandée',
-    'Âge minimum : 18 ans',
+    'Permis de conduire',
+    'Passeport',
+    'Caution',
   ];
+
+  const quadPricing = [
+    { duration: '1 heure', price: '6 000 DA (40 €)' },
+    { duration: '2 heures', price: '8 000 DA (60 €)' },
+    { duration: 'Demi-journée', price: '12 000 DA (90 €)' },
+    { duration: 'Passager supplémentaire', price: '+2 000 DA (+10 €)' },
+  ];
+
+  const carPricing = [
+    { duration: 'Citroën C3 (par jour)', price: '9 000 DA (60 €)' },
+  ];
+
+  const infoRequests = [
+    'La date et l’heure souhaitée',
+    'Nombre de quads souhaitées',
+  ];
+
+  const carInfoRequests = [
+    'La date et l’heure souhaitée',
+    'Nombre de voitures souhaitées',
+  ];
+
+  const carouselImages = [
+    '/quad1.jpeg',
+    '/quad2.jpeg',
+    '/quad4.jpeg',
+    '/quad5.jpeg',
+    '/pa.jpeg',
+    '/p.jpeg',
+  ];
+
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    const container = carouselRef.current;
+    if (!container) {
+      return;
+    }
+    const amount = container.clientWidth * 0.8;
+    container.scrollBy({
+      left: direction === 'left' ? -amount : amount,
+      behavior: 'smooth',
+    });
+  };
 
   const socialLinks = [
     {
@@ -50,57 +92,44 @@ function App() {
       <Navbar />
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-black to-red-900 opacity-90"></div>
+      <section id="hero" className="relative min-h-screen flex items-center justify-start overflow-hidden px-4 sm:px-8">
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+            backgroundImage: 'url(/dz.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         ></div>
+        <div className="absolute inset-0 bg-black/30"></div>
 
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <div className="mb-8 flex justify-center items-center gap-4">
-            <div className="w-20 h-1 bg-green-500"></div>
-            <Crown className="w-16 h-16 text-red-500" />
-            <div className="w-20 h-1 bg-red-500"></div>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            <span className="text-white">DZ</span>{' '}
-            <span className="text-green-500">QUAD</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl mb-4 font-semibold text-red-500">
-            by DZ Cars
-          </p>
-
-          <div className="text-3xl md:text-5xl font-bold mb-8 text-white">
-            Tahia la balade 🇩🇿
-          </div>
-
-          <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto text-gray-200 leading-relaxed">
-            Vivez l'aventure ultime à Ghazaouet ! Explorez les paysages magnifiques de l'Algérie
-            en quad tout-terrain. Sensations fortes garanties.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:+213775903564"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl"
-            >
-              <Phone className="w-6 h-6" />
-              Réserver maintenant
-            </a>
-            <a
-              href="https://wa.me/213775903564"
-              className="bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2 shadow-xl"
-            >
-              <MessageCircle className="w-6 h-6" />
-              WhatsApp
-            </a>
+        <div className="relative z-10 w-full max-w-5xl">
+          <div className="flex flex-col items-start text-left">
+            <div className="text-3xl md:text-4xl font-bold mb-6 text-white">
+            Salem Aleykoum 🇩🇿
+            </div>
+            <div className="text-2xl md:text-3xl font-bold mb-6 text-white">
+            🇩🇿 OFFRE 2025 🇩🇿
+            </div>
+            <p className="text-lg md:text-2xl max-w-3xl text-gray-100 leading-relaxed">
+            DZ QUAD / DZ CARS vous propose la location de quads en libre service et tout-terrain,
+            ainsi que de voitures, pour une expérience fun, pratique et inoubliable à Ghazaouet en
+            pleine nature.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://wa.me/213775903564"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 text-center"
+              >
+                Nous contacter
+              </a>
+              <a
+                href="#tarifs"
+                className="bg-white/90 hover:bg-white text-black px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 text-center"
+              >
+                Découvrir nos offres
+              </a>
+            </div>
           </div>
         </div>
 
@@ -115,91 +144,202 @@ function App() {
       <section id="tarifs" className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            <span className="text-green-500">Nos</span> Tarifs
+            <span className="text-green-500">Nos</span> Offres
           </h2>
           <p className="text-center text-gray-400 mb-12 text-lg">
-            Des prix transparents pour une expérience inoubliable
+            Découvrez nos offres quads et voitures pour une expérience inoubliable
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            {pricing.map((item, index) => (
-              <div
-                key={index}
-                className={`relative bg-gradient-to-br ${
-                  item.popular
-                    ? 'from-green-600 to-green-800 scale-105 shadow-2xl'
-                    : 'from-gray-800 to-gray-900'
-                } p-8 rounded-2xl border-2 ${
-                  item.popular ? 'border-green-400' : 'border-gray-700'
-                } hover:scale-105 transition-transform`}
-              >
-                {item.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
-                    POPULAIRE
-                  </div>
-                )}
-                <div className="text-center">
-                  <Clock className="w-12 h-12 mx-auto mb-4 text-white" />
-                  <h3 className="text-2xl font-bold mb-4">{item.duration}</h3>
-                  <div className="text-5xl font-bold mb-6">{item.price}</div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <a
+              href="https://wa.me/213775903564"
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-2xl border-2 border-gray-700 hover:border-green-500 transition-colors"
+            >
+              <div className="text-center">
+                <img
+                  src="/c3.webp"
+                  alt="Voiture"
+                  className="w-full h-60 object-cover rounded-xl mb-6"
+                />
+                <h3 className="text-2xl font-bold mb-4">Location de Voitures</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Conduite confortable et pratique pour vos déplacements à Ghazaouet.
+                </p>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">Tarifs</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {carPricing.map((item, index) => (
+                      <li key={index} className="flex items-center justify-between gap-3">
+                        <span>{item.duration}</span>
+                        <span className="font-semibold text-white">{item.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">À prévoir</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {conditions.map((condition, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{condition}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">Inclus</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {carIncluded.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <item.icon className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{item.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-8">
+                  <div className="text-lg font-bold mb-3">Merci de nous indiquer</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {carInfoRequests.map((info, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{info}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-white/90 group-hover:bg-white text-black px-6 py-3 rounded-lg font-bold transition-all text-center">
+                  Je réserve maintenant
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="bg-red-600 p-6 rounded-xl text-center mb-6">
-            <Users className="w-10 h-10 mx-auto mb-3" />
-            <p className="text-xl font-bold">
-              Passager supplémentaire : +10 €
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-r from-green-600 to-green-700 p-6 rounded-xl text-center">
-            <p className="text-lg font-bold flex items-center justify-center gap-2">
-              <CheckCircle className="w-6 h-6" />
-              Casque + Gants fournis
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included Section */}
-      <section className="py-20 px-4 bg-gray-900">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="text-red-500">Ce qui est</span> Inclus
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {included.map((item, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-800 to-black p-8 rounded-2xl border-2 border-green-600 text-center hover:border-red-600 transition-colors"
-              >
-                <item.icon className="w-16 h-16 mx-auto mb-4 text-green-500" />
-                <p className="text-xl font-bold">{item.text}</p>
+            </a>
+            <a
+              href="https://wa.me/213775903564"
+              className="group bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-2xl border-2 border-gray-700 hover:border-red-500 transition-colors"
+            >
+              <div className="text-center">
+                <img
+                  src="/quad6.jpg"
+                  alt="Quad"
+                  className="w-full h-60 object-cover rounded-xl mb-6"
+                />
+                <h3 className="text-2xl font-bold mb-4">Location de Quads</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Sensations fortes en libre service et tout-terrain pour une aventure unique.
+                </p>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">Tarifs</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {quadPricing.map((item, index) => (
+                      <li key={index} className="flex items-center justify-between gap-3">
+                        <span>{item.duration}</span>
+                        <span className="font-semibold text-white">{item.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">À prévoir</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {conditions.map((condition, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{condition}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-6">
+                  <div className="text-lg font-bold mb-3">Inclus</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {quadIncluded.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <item.icon className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{item.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-black/30 p-5 rounded-xl text-left mb-8">
+                  <div className="text-lg font-bold mb-3">Merci de nous indiquer</div>
+                  <ul className="space-y-2 text-gray-300">
+                    {infoRequests.map((info, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                        <span>{info}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-white/90 group-hover:bg-white text-black px-6 py-3 rounded-lg font-bold transition-all text-center">
+                  Je réserve maintenant
+                </div>
               </div>
-            ))}
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Conditions Section */}
+      {/* Tahia Section */}
       <section className="py-20 px-4 bg-black">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="text-green-500">Conditions</span> de Location
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-left mb-4">
+            TAHIA LA BALADE 🇩🇿
           </h2>
-
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border-2 border-red-600">
-            <ul className="space-y-4">
-              {conditions.map((condition, index) => (
-                <li key={index} className="flex items-start gap-4">
-                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
-                  <span className="text-lg">{condition}</span>
-                </li>
+          <p className="text-gray-300 text-lg md:text-xl max-w-3xl mb-10">
+            Offrez vous une expérience unique avec nous en vous baladant dans les plus beaux
+            endroits de Ghazaouet.
+          </p>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => scrollCarousel('left')}
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black w-10 h-10 rounded-full font-bold items-center justify-center"
+              aria-label="Précédent"
+            >
+              ‹
+            </button>
+            <div
+              ref={carouselRef}
+              className="flex gap-6 overflow-x-auto md:overflow-hidden scroll-smooth snap-x snap-mandatory"
+            >
+              {carouselImages.map((src) => (
+                <div key={src} className="w-full sm:w-72 md:w-80 flex-shrink-0 snap-center">
+                  <img
+                    src={src}
+                    alt="Balade en quad"
+                    className="w-full h-56 sm:h-56 md:h-64 object-cover rounded-xl"
+                  />
+                </div>
               ))}
-            </ul>
+            </div>
+            <button
+              type="button"
+              onClick={() => scrollCarousel('right')}
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black w-10 h-10 rounded-full font-bold items-center justify-center"
+              aria-label="Suivant"
+            >
+              ›
+            </button>
+            <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
+              <button
+                type="button"
+                onClick={() => scrollCarousel('left')}
+                className="bg-white/90 hover:bg-white text-black px-4 py-2 rounded-full font-bold"
+                aria-label="Précédent"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollCarousel('right')}
+                className="bg-white/90 hover:bg-white text-black px-4 py-2 rounded-full font-bold"
+                aria-label="Suivant"
+              >
+                ›
+              </button>
+            </div>
           </div>
         </div>
       </section>
