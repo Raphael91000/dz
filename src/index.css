@@ -11,3 +11,14 @@
     @apply antialiased;
   }
 }
+
+@layer components {
+  .dz-hover-gradient-border {
+    border: 2px solid #d1d5db;
+  }
+
+  .dz-hover-gradient-border:hover {
+    border-color: transparent;
+    border-image: linear-gradient(90deg, #00853f, #d21034) 1;
+  }
+}

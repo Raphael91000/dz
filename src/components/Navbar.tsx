@@ -64,7 +64,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-white text-black shadow-lg border-t border-gray-200">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <a
@@ -74,7 +74,7 @@ export default function Navbar() {
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
-                className="block text-white hover:text-green-500 transition-colors font-semibold text-lg py-2"
+                className="block text-black hover:text-green-600 transition-colors font-semibold text-lg py-2"
               >
                 {link.name}
               </a>
