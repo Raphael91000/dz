@@ -16,7 +16,7 @@ function App() {
   const conditions = [
     'Permis de conduire',
     'Passeport',
-    'Caution',
+    'Caution : 300 € (45 000 DA)',
   ];
 
   const quadPricing = [
@@ -109,7 +109,7 @@ function App() {
             Salem Aleykoum 🇩🇿
             </div>
             <div className="text-2xl md:text-3xl font-bold mb-6 text-white">
-            🇩🇿 OFFRE 2025 🇩🇿
+            🇩🇿 OFFRE 2026 🇩🇿
             </div>
             <p className="text-lg md:text-2xl max-w-3xl text-gray-100 leading-relaxed">
             DZ QUAD / DZ CARS vous propose la location de quads en libre service et tout-terrain,
